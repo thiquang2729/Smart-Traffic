@@ -1,0 +1,14 @@
+video_dir: "data/videos"
+output_dir: "data/outputs"
+model:
+  conf_threshold: 0.35
+  nms_threshold: 0.5
+matching:
+  mode: "relaxed"
+  max_distance: 2
+tracking:
+  lost_tolerance: 10
+trim:
+  pre_pad: 0.5
+  post_pad: 0.5
+
