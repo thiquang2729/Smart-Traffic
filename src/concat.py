@@ -22,8 +22,10 @@ def concat_segments_ffmpeg(segments: List[Dict], output_path: str, ffmpeg_path: 
             in_path = s['video_path']
             part = os.path.join(tmpdir, f'part_{idx:04d}.mp4')
             # Re-encode for accurate trim
+            # Đặt -i trước -ss để đảm bảo seek chính xác hơn
             cmd = [ffmpeg_path, '-y', '-hide_banner', '-loglevel', 'error',
-                   '-ss', f'{start:.3f}', '-to', f'{end:.3f}', '-i', in_path,
+                   '-i', in_path,
+                   '-ss', f'{start:.3f}', '-to', f'{end:.3f}',
                    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', '-an', part]
             subprocess.run(cmd, check=True)
             part_paths.append(part)

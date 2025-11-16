@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import (
-    create_engine, Column, Integer, String, Float, DateTime, Text, UniqueConstraint, ForeignKey
+    create_engine, Column, Integer, String, Float, DateTime, Text, UniqueConstraint, ForeignKey, inspect, text
 )
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 
@@ -46,6 +46,12 @@ class Appearance(Base):
     score_lp = Column(Float)
     score_ocr = Column(Float)
     match_mode = Column(String)
+    # Trajectory analysis fields
+    speed_px_per_sec = Column(Float)  # Tốc độ (pixel/giây)
+    speed_kmh = Column(Float)  # Tốc độ (km/h) nếu có calibration
+    direction_deg = Column(Float)  # Hướng di chuyển (độ)
+    direction_name = Column(String)  # Tên hướng (Đông, Tây, Bắc, Nam, etc.)
+    total_distance_px = Column(Float)  # Tổng quãng đường (pixel)
     video = relationship('Video', back_populates='appearances')
 
 
@@ -65,9 +71,39 @@ def get_engine(db_path: str) -> any:
     return create_engine(f'sqlite:///{db_path}', future=True)
 
 
+def migrate_appearances_table(engine):
+    """Migrate appearances table to add trajectory columns if they don't exist"""
+    inspector = inspect(engine)
+    columns = [col['name'] for col in inspector.get_columns('appearances')]
+    
+    new_columns = {
+        'speed_px_per_sec': 'REAL',
+        'speed_kmh': 'REAL',
+        'direction_deg': 'REAL',
+        'direction_name': 'TEXT',
+        'total_distance_px': 'REAL'
+    }
+    
+    with engine.connect() as conn:
+        for col_name, col_type in new_columns.items():
+            if col_name not in columns:
+                print(f"📊 Adding column '{col_name}' to appearances table...")
+                conn.execute(text(f"ALTER TABLE appearances ADD COLUMN {col_name} {col_type}"))
+                conn.commit()
+                print(f"✅ Column '{col_name}' added successfully")
+
+
 def init_db(db_path: str) -> sessionmaker:
     engine = get_engine(db_path)
+    
+    # Create all tables first
     Base.metadata.create_all(engine)
+    
+    # Migrate existing tables if needed
+    inspector = inspect(engine)
+    if 'appearances' in inspector.get_table_names():
+        migrate_appearances_table(engine)
+    
     return sessionmaker(bind=engine, expire_on_commit=False)
 
 

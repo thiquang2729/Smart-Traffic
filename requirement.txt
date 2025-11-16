@@ -9,3 +9,4 @@ pyyaml
 requests
 pandas
 seaborn
+ultralytics>=8.2.64

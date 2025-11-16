@@ -257,6 +257,63 @@ pre {
     flex: 1;
 }
 
+.trajectory-info {
+    background: #0f1530;
+    border: 1px solid #2a3350;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.trajectory-segment {
+    background: #0d132b;
+    border: 1px solid #222b4a;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.trajectory-segment:last-child {
+    margin-bottom: 0;
+}
+
+.trajectory-segment-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #7ab7ff;
+    margin-bottom: 6px;
+}
+
+.trajectory-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    font-size: 12px;
+}
+
+.trajectory-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.trajectory-metric-label {
+    color: #aab2c8;
+    font-size: 11px;
+}
+
+.trajectory-metric-value {
+    color: #e6e8f0;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.trajectory-metric-value.highlight {
+    color: #00d4aa;
+}
+
 @media(max-width:1080px) {
     .grid {
         grid-template-columns: 1fr;

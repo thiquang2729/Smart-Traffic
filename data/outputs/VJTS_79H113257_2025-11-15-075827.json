@@ -1,0 +1,22 @@
+{
+  "plate": "79H1-13257",
+  "segments": [
+    {
+      "video_path": "data\\videos\\uploads\\c58d33bec663\\7075186862514.mp4",
+      "start_time": 2.0951714677640605,
+      "end_time": 7.2474458161865565,
+      "trajectory": {
+        "speed_px_per_sec": 129.49968644822394,
+        "max_speed_px_per_sec": 347.0945383167381,
+        "min_speed_px_per_sec": 18.775849085978948,
+        "direction_deg": 180.7603300367413,
+        "direction_name": "Tây",
+        "total_distance_px": 537.7182261677166,
+        "total_distance_m": null,
+        "avg_acceleration_px_per_sec2": 7.799374865936839,
+        "trajectory_length": 41,
+        "duration_sec": 4.152274348422496
+      }
+    }
+  ]
+}

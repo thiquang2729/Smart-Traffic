@@ -11,7 +11,7 @@ import asyncio
 from anyio import to_thread
 import json
 
-from .service import run_job
+from .service import run_job, get_cancellation_flag, cancel_job, clear_cancellation_flag
 
 
 app = FastAPI(title='VJTS API')
@@ -124,6 +124,10 @@ async def ws_progress(ws: WebSocket):
 @app.get('/events')
 async def sse_events(plate: str, video_dir: str = 'data/videos', output_dir: str = 'data/outputs'):
     queue: asyncio.Queue = asyncio.Queue()
+    
+    # Generate job_id for cancellation
+    job_id = f"JOB-{uuid.uuid4().hex[:12]}"
+    cancellation_flag = get_cancellation_flag(job_id)
 
     def on_event(evt):
         try:
@@ -140,6 +144,9 @@ async def sse_events(plate: str, video_dir: str = 'data/videos', output_dir: str
             pass
 
     async def gen():
+        # Send job_id to client
+        yield f"event: job_id\ndata: {json.dumps({'job_id': job_id})}\n\n"
+        
         loop = asyncio.get_running_loop()
         task = loop.create_task(to_thread.run_sync(
             run_job,
@@ -152,20 +159,30 @@ async def sse_events(plate: str, video_dir: str = 'data/videos', output_dir: str
             'db/vjts.sqlite',
             on_event,
             on_crop,
+            cancellation_flag,  # Pass cancellation flag
         ))
         try:
             while True:
                 try:
                     item = await asyncio.wait_for(queue.get(), timeout=0.5)
                     if item['type'] == 'event':
-                        yield f"data: {json.dumps(item['payload'])}\n\n"
+                        payload = item['payload']
+                        # Check for cancellation event
+                        if payload.get('type') == 'cancelled':
+                            yield f"event: cancelled\ndata: {json.dumps(payload)}\n\n"
+                            break
+                        yield f"data: {json.dumps(payload)}\n\n"
                     elif item['type'] == 'crop':
                         yield f"event: crop\ndata: {item['payload']}\n\n"
                 except asyncio.TimeoutError:
                     if task.done():
                         try:
                             res = task.result()
-                            yield f"event: result\ndata: {json.dumps(res)}\n\n"
+                            # Check if cancelled
+                            if res.get('error') == 'cancelled':
+                                yield f"event: cancelled\ndata: {json.dumps(res)}\n\n"
+                            else:
+                                yield f"event: result\ndata: {json.dumps(res)}\n\n"
                         except Exception as e:
                             err = {'error': 'job_failed', 'message': str(e)}
                             yield f"event: result\ndata: {json.dumps(err)}\n\n"
@@ -173,6 +190,7 @@ async def sse_events(plate: str, video_dir: str = 'data/videos', output_dir: str
         finally:
             if not task.done():
                 task.cancel()
+            clear_cancellation_flag(job_id)
 
     return StreamingResponse(gen(), media_type='text/event-stream')
 
@@ -182,6 +200,16 @@ async def download_result(path: str):
     if not os.path.exists(path):
         return JSONResponse({'error': 'not found'}, status_code=404)
     return FileResponse(path)
+
+
+@app.post('/cancel')
+async def cancel_job_endpoint(job_id: str = Form(...)):
+    """Cancel a running job"""
+    success = cancel_job(job_id)
+    if success:
+        return JSONResponse({'status': 'cancelled', 'message': f'Job {job_id} đã được hủy'})
+    else:
+        return JSONResponse({'status': 'not_found', 'message': f'Job {job_id} không tìm thấy hoặc đã hoàn thành'}, status_code=404)
 
 
 @app.get('/')

@@ -30,6 +30,7 @@
 
         <div class="row">
           <button id="runAll" class="primary" style="width:100%;font-size:15px;">🚀 Chạy thôi</button>
+          <button id="stopJob" class="primary" style="width:100%;font-size:15px;margin-top:8px;background:#dc3545;display:none;">⏹️ Dừng xử lý</button>
         </div>
 
         <label>Chọn nhiều video gốc</label>
@@ -47,6 +48,12 @@
         </div>
 
         <div id="links" class="links"></div>
+        
+        <div id="trajectorySection" style="display:none;margin-top:12px;">
+          <label>📊 Thông tin di chuyển</label>
+          <div id="trajectoryInfo" class="trajectory-info"></div>
+        </div>
+        
         <label>Trạng thái xử lý</label>
         <div id="logStatus" class="log-status" style="display:none;">
           <div class="loading-spinner"></div><span id="logMessage">Đang xử lý...</span>
