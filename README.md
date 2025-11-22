@@ -98,13 +98,13 @@ PHẦN 3: CHẠY CHƯƠNG TRÌNH
 
 2. Mở giao diện sử dụng:
    - Mở trình duyệt web (Chrome, Cốc Cốc, Edge...).
-   - Nhập địa chỉ sau vào t
-
+   - Nhập địa chỉ sau vào 
+http://localhost:8000
 
 (image-3.png)
 
 (image-4.png)
-*(Giao diện chính với khung video và các điều khiển)*
+
 
 ### 2. Cách chạy nhận diện:
 - **Ô "Biển số cần tìm"**: Nhập biển số xe bạn muốn tìm (ví dụ: 29A-12345).
