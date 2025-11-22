@@ -99,7 +99,7 @@ PHẦN 3: CHẠY CHƯƠNG TRÌNH
 2. Mở giao diện sử dụng:
    - Mở trình duyệt web (Chrome, Cốc Cốc, Edge...).
    - Nhập địa chỉ sau vào t
-![Giao diện chính của phần mềm]!
+
 
 (image-3.png)
 
@@ -116,13 +116,13 @@ PHẦN 3: CHẠY CHƯƠNG TRÌNH
 ### 3. Xem kết quả:
 - Khi chạy, hệ thống sẽ hiển thị log (nhật ký) bên phải.
 - Các hình ảnh biển số cắt được (crops) sẽ hiện ra ở cột bên phải.
-![alt text](image-1.png)
+(image-1.png)
 ![Bảng kết quả chi tiết]
 *(Bảng thông tin di chuyển và các ảnh biển số cắt được)*
 
 - Video kết quả (có vẽ khung nhận diện) sẽ hiện ở phía dưới.
 
-![Video tracking kết quả]![alt text](image-2.png)
+(image-2.png)
 *(So sánh video gốc và video đã nhận diện)*
 
 ---
