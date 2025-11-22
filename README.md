@@ -99,7 +99,11 @@ PHẦN 3: CHẠY CHƯƠNG TRÌNH
 2. Mở giao diện sử dụng:
    - Mở trình duyệt web (Chrome, Cốc Cốc, Edge...).
    - Nhập địa chỉ sau vào t
-![Giao diện chính của phần mềm](images/demo_ui_overview.png)
+![Giao diện chính của phần mềm]!
+
+(image-3.png)
+
+(image-4.png)
 *(Giao diện chính với khung video và các điều khiển)*
 
 ### 2. Cách chạy nhận diện:
@@ -112,18 +116,18 @@ PHẦN 3: CHẠY CHƯƠNG TRÌNH
 ### 3. Xem kết quả:
 - Khi chạy, hệ thống sẽ hiển thị log (nhật ký) bên phải.
 - Các hình ảnh biển số cắt được (crops) sẽ hiện ra ở cột bên phải.
-
-![Bảng kết quả chi tiết](images/demo_results_panel.png)
+![alt text](image-1.png)
+![Bảng kết quả chi tiết]
 *(Bảng thông tin di chuyển và các ảnh biển số cắt được)*
 
 - Video kết quả (có vẽ khung nhận diện) sẽ hiện ở phía dưới.
 
-![Video tracking kết quả](images/demo_video_tracking.png)
+![Video tracking kết quả]![alt text](image-2.png)
 *(So sánh video gốc và video đã nhận diện)*
 
 ---
 
 ## LƯU Ý CHUNG
-- File `ffmpeg.exe` đã có sẵn trong thư mục code để xử lý video, bạn không cần cài thêm.
+- File `ffmpeg.exe` đã có sẵn trong thư mục code để xử lý video, không cần cài thêm.
 - Nếu gặp lỗi "ModuleNotFoundError", hãy kiểm tra lại xem đã chạy đủ 2 lệnh `pip install` ở Phần 2 chưa.
 - Để dừng chương trình, quay lại màn hình đen `cmd` và nhấn tổ hợp phím `Ctrl + C`.
