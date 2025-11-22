@@ -1,0 +1,22 @@
+{
+  "plate": "62H-022.22",
+  "segments": [
+    {
+      "video_path": "data/outputs\\annotated\\iLoveYt.net_Shorts_Meo-bam-bien-so-dep_Media_uAnQJlpH5Qs_001_480p_annot.mp4",
+      "start_time": 0.0,
+      "end_time": 5.7,
+      "trajectory": {
+        "speed_px_per_sec": 17.073343302098063,
+        "max_speed_px_per_sec": 63.07083326912517,
+        "min_speed_px_per_sec": 1.1092630405245045,
+        "direction_deg": 23.840302340714846,
+        "direction_name": "Đông Bắc",
+        "total_distance_px": 99.20082384614503,
+        "total_distance_m": null,
+        "avg_acceleration_px_per_sec2": 4.800963998073523,
+        "trajectory_length": 47,
+        "duration_sec": 5.6
+      }
+    }
+  ]
+}

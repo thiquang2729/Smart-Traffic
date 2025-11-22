@@ -1,0 +1,27 @@
+video_dir: "data/videos"
+output_dir: "data/outputs"
+model:
+  conf_threshold: 0.35
+  nms_threshold: 0.5
+matching:
+  mode: "relaxed"
+  max_distance: 2
+tracking:
+  lost_tolerance: 10
+trim:
+  pre_pad: 0.5
+  post_pad: 0.5
+gpu:
+  enabled: true
+  batch_size: 4  # Giảm xuống để giảm CPU load và tăng throughput
+  auto_batch_size: false  # Tắt auto để dùng giá trị cố định
+  frame_skip: 3  # Bỏ qua 2 frame, xử lý mỗi 3 frame để giảm CPU load (nhanh hơn)
+  clear_cache_interval: 500  # Clear GPU cache mỗi 500 frames
+
+# Calibration để tính tốc độ thực (km/h)
+# pixel_to_meter: tỷ lệ chuyển đổi pixel -> meter
+# Ví dụ: nếu 1m trong thực tế = 100 pixel trong video, thì pixel_to_meter = 0.01
+# Để trống nếu không có calibration (chỉ tính tốc độ pixel/giây)
+calibration:
+  pixel_to_meter: null  # null hoặc giá trị số (ví dụ: 0.01)
+

@@ -1,0 +1,15 @@
+{
+  "plate": "62H022.22",
+  "segments": [
+    {
+      "video_path": "data/outputs\\annotated\\iLoveYt.net_Shorts_Meo-bam-bien-so-dep_Media_uAnQJlpH5Qs_001_480p_annot.mp4",
+      "start_time": 0.0,
+      "end_time": 1.3666666666666667
+    },
+    {
+      "video_path": "data/outputs\\annotated\\iLoveYt.net_Shorts_Meo-bam-bien-so-dep_Media_uAnQJlpH5Qs_001_480p_annot.mp4",
+      "start_time": 1.3,
+      "end_time": 5.7
+    }
+  ]
+}
