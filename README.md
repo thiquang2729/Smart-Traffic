@@ -1,110 +1,76 @@
-HƯỚNG DẪN SỬ DỤNG (HDSD) - SMART TRAFFIC
-=========================================
+# HƯỚNG DẪN SỬ DỤNG (HDSD) - SMART TRAFFIC
 
 Tài liệu này hướng dẫn chi tiết cách cài đặt và chạy phần mềm nhận diện biển số xe, dành cho người mới bắt đầu và không rành về kỹ thuật.
 
-PHẦN 1: CHUẨN BỊ MÔI TRƯỜNG
----------------------------
+---
 
-1. Cài đặt Python (Nếu chưa có):
-   - Truy cập trang web: https://www.python.org/downloads/
-   - Tải xuống phiên bản Python mới nhất (khuyên dùng 3.10 hoặc 3.11).
-   - Chạy file cài đặt vừa tải về.
-   - QUAN TRỌNG: Ở màn hình cài đặt đầu tiên, hãy TÍCH VÀO Ô "Add Python to PATH" (Thêm Python vào biến môi trường). Nếu không tích ô này, bạn sẽ không chạy được lệnh python.
-   - Nhấn "Install Now" và đợi cài đặt xong.
+## PHẦN 1: CHUẨN BỊ MÔI TRƯỜNG
 
-2. Tải mã nguồn (Code):
-   - Nếu bạn nhận được file nén (.zip, .rar), hãy giải nén nó ra một thư mục. Ví dụ: `C:\Smart-Traffic`.
-   - Ghi nhớ đường dẫn tới thư mục này.
+### 1. Cài đặt Python (Nếu chưa có)
+- Truy cập trang web: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+- Tải xuống phiên bản Python mới nhất (khuyên dùng 3.10 hoặc 3.11).
+- Chạy file cài đặt vừa tải về.
+- **QUAN TRỌNG**: Ở màn hình cài đặt đầu tiên, hãy **TÍCH VÀO Ô "Add Python to PATH"** (Thêm Python vào biến môi trường). Nếu không tích ô này, bạn sẽ không chạy được lệnh python.
+- Nhấn "Install Now" và đợi cài đặt xong.
 
-PHẦN 2: CÀI ĐẶT THƯ VIỆN
-------------------------
+### 2. Tải mã nguồn (Code)
+- Nếu bạn nhận được file nén (.zip, .rar), hãy giải nén nó ra một thư mục. Ví dụ: `C:\Smart-Traffic`.
+- Ghi nhớ đường dẫn tới thư mục này.
 
-1. Mở cửa sổ dòng lệnh (Terminal/CMD) tại thư mục dự án:
-   - Mở thư mục chứa code bạn vừa giải nén (bạn sẽ thấy các file như `requirement.txt`, `README.md`, thư mục `src`, v.v...).
-   - Nhấn chuột vào thanh địa chỉ (thanh hiển thị đường dẫn thư mục ở trên cùng cửa sổ).
-   - Xóa hết chữ trong đó, gõ chữ `cmd` rồi nhấn Enter.
-   - Một màn hình đen (Command Prompt) sẽ hiện ra.
+---
 
-2. Cài đặt các thư viện cần thiết:
-   - Tại màn hình đen `cmd`, copy dòng lệnh sau và dán vào (nhấn chuột phải để dán), sau đó nhấn Enter:
-     
-     pip install -r requirement.txt
+## PHẦN 2: CÀI ĐẶT THƯ VIỆN
 
-   - Đợi một lúc để máy tải và cài đặt các thư viện.
-   - Sau khi chạy xong lệnh trên, tiếp tục chạy thêm lệnh sau để cài đặt các thư viện chạy web (nếu chưa có):
+### 1. Mở cửa sổ dòng lệnh (Terminal/CMD) tại thư mục dự án
+- Mở thư mục chứa code bạn vừa giải nén (bạn sẽ thấy các file như `requirement.txt`, `README.md`, thư mục `src`, v.v...).
+- Nhấn chuột vào thanh địa chỉ (thanh hiển thị đường dẫn thư mục ở trên cùng cửa sổ).
+- Xóa hết chữ trong đó, gõ chữ `cmd` rồi nhấn Enter.
+- Một màn hình đen (Command Prompt) sẽ hiện ra.
 
-     pip install fastapi uvicorn python-multipart
+### 2. Cài đặt các thư viện cần thiết
+- Tại màn hình đen `cmd`, copy dòng lệnh sau và dán vào (nhấn chuột phải để dán), sau đó nhấn Enter:
+  ```bash
+  pip install -r requirement.txt
+  ```
 
-   - Đợi cài đặt hoàn tất (không còn dòng chữ đỏ báo lỗi là thành công).
+- Đợi một lúc để máy tải và cài đặt các thư viện.
+- Sau khi chạy xong lệnh trên, tiếp tục chạy thêm lệnh sau để cài đặt các thư viện chạy web (nếu chưa có):
+  ```bash
+  pip install fastapi uvicorn python-multipart
+  ```
 
-PHẦN 3: CHẠY CHƯƠNG TRÌNH
--------------------------
+- Đợi cài đặt hoàn tất (không còn dòng chữ đỏ báo lỗi là thành công).
 
-1. Khởi động Server:
-   - Vẫn tại màn hình `cmd` đó, copy và chạy dòng lệnh sau:
+---
 
-     python -m uvicorn src.app:app --host localhost --port 8000 --reload
-HƯỚNG DẪN SỬ DỤNG (HDSD) - SMART TRAFFIC
-=========================================
+## PHẦN 3: CHẠY CHƯƠNG TRÌNH
 
-Tài liệu này hướng dẫn chi tiết cách cài đặt và chạy phần mềm nhận diện biển số xe, dành cho người mới bắt đầu và không rành về kỹ thuật.
+### 1. Khởi động Server
+- Vẫn tại màn hình `cmd` đó, copy và chạy dòng lệnh sau:
+  ```bash
+  python -m uvicorn src.app:app --host localhost --port 8000 --reload
+  ```
 
-PHẦN 1: CHUẨN BỊ MÔI TRƯỜNG
----------------------------
+- Nếu thấy hiện ra các dòng chữ như "Application startup complete", "Uvicorn running on http://localhost:8000" là thành công.
+- **ĐỪNG TẮT** màn hình đen này. Nếu tắt, chương trình sẽ dừng hoạt động.
 
-1. Cài đặt Python (Nếu chưa có):
-   - Truy cập trang web: https://www.python.org/downloads/
-   - Tải xuống phiên bản Python mới nhất (khuyên dùng 3.10 hoặc 3.11).
-   - Chạy file cài đặt vừa tải về.
-   - QUAN TRỌNG: Ở màn hình cài đặt đầu tiên, hãy TÍCH VÀO Ô "Add Python to PATH" (Thêm Python vào biến môi trường). Nếu không tích ô này, bạn sẽ không chạy được lệnh python.
-   - Nhấn "Install Now" và đợi cài đặt xong.
+### 2. Mở giao diện sử dụng
+- Mở trình duyệt web (Chrome, Cốc Cốc, Edge...).
+- Nhập địa chỉ sau vào thanh địa chỉ web:
+  `http://localhost:8000`
 
-2. Tải mã nguồn (Code):
-   - Nếu bạn nhận được file nén (.zip, .rar), hãy giải nén nó ra một thư mục. Ví dụ: `C:\Smart-Traffic`.
-   - Ghi nhớ đường dẫn tới thư mục này.
+- Giao diện phần mềm sẽ hiện ra.
 
-PHẦN 2: CÀI ĐẶT THƯ VIỆN
-------------------------
+![Giao diện chính của phần mềm](images/demo_ui_overview.png)
+*(Giao diện chính với khung video và các điều khiển)*
 
-1. Mở cửa sổ dòng lệnh (Terminal/CMD) tại thư mục dự án:
-   - Mở thư mục chứa code bạn vừa giải nén (bạn sẽ thấy các file như `requirement.txt`, `README.md`, thư mục `src`, v.v...).
-   - Nhấn chuột vào thanh địa chỉ (thanh hiển thị đường dẫn thư mục ở trên cùng cửa sổ).
-   - Xóa hết chữ trong đó, gõ chữ `cmd` rồi nhấn Enter.
-   - Một màn hình đen (Command Prompt) sẽ hiện ra.
+---
 
-2. Cài đặt các thư viện cần thiết:
-   - Tại màn hình đen `cmd`, copy dòng lệnh sau và dán vào (nhấn chuột phải để dán), sau đó nhấn Enter:
-     
-     pip install -r requirement.txt
+## PHẦN 4: HƯỚNG DẪN SỬ DỤNG TRÊN GIAO DIỆN
 
-   - Đợi một lúc để máy tải và cài đặt các thư viện.
-   - Sau khi chạy xong lệnh trên, tiếp tục chạy thêm lệnh sau để cài đặt các thư viện chạy web (nếu chưa có):
-
-     pip install fastapi uvicorn python-multipart
-
-   - Đợi cài đặt hoàn tất (không còn dòng chữ đỏ báo lỗi là thành công).
-
-PHẦN 3: CHẠY CHƯƠNG TRÌNH
--------------------------
-
-1. Khởi động Server:
-   - Vẫn tại màn hình `cmd` đó, copy và chạy dòng lệnh sau:
-
-     python -m uvicorn src.app:app --host localhost --port 8000 --reload
-
-   - Nếu thấy hiện ra các dòng chữ như "Application startup complete", "Uvicorn running on http://localhost:8000" là thành công.
-   - ĐỪNG TẮT màn hình đen này. Nếu tắt, chương trình sẽ dừng hoạt động.
-
-2. Mở giao diện sử dụng:
-   - Mở trình duyệt web (Chrome, Cốc Cốc, Edge...).
-   - Nhập địa chỉ sau vào 
-http://localhost:8000
-
-(image-3.png)
-
-(image-4.png)
-
+### 1. Giao diện chính gồm:
+- **Khung bên trái**: Hiển thị video đang chạy.
+- **Khung bên phải**: Các nút điều khiển và kết quả.
 
 ### 2. Cách chạy nhận diện:
 - **Ô "Biển số cần tìm"**: Nhập biển số xe bạn muốn tìm (ví dụ: 29A-12345).
@@ -116,18 +82,18 @@ http://localhost:8000
 ### 3. Xem kết quả:
 - Khi chạy, hệ thống sẽ hiển thị log (nhật ký) bên phải.
 - Các hình ảnh biển số cắt được (crops) sẽ hiện ra ở cột bên phải.
-(image-1.png)
-![Bảng kết quả chi tiết]
+
+![Bảng kết quả chi tiết](images/demo_results_panel.png)
 *(Bảng thông tin di chuyển và các ảnh biển số cắt được)*
 
 - Video kết quả (có vẽ khung nhận diện) sẽ hiện ở phía dưới.
 
-(image-2.png)
+![Video tracking kết quả](images/demo_video_tracking.png)
 *(So sánh video gốc và video đã nhận diện)*
 
 ---
 
 ## LƯU Ý CHUNG
-- File `ffmpeg.exe` đã có sẵn trong thư mục code để xử lý video, không cần cài thêm.
+- File `ffmpeg.exe` đã có sẵn trong thư mục code để xử lý video, bạn không cần cài thêm.
 - Nếu gặp lỗi "ModuleNotFoundError", hãy kiểm tra lại xem đã chạy đủ 2 lệnh `pip install` ở Phần 2 chưa.
 - Để dừng chương trình, quay lại màn hình đen `cmd` và nhấn tổ hợp phím `Ctrl + C`.
